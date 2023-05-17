@@ -36,22 +36,33 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 
 
 
-# write your own comment -what does the next line do? 
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# write your own comment - what does this do?
-streamlit.dataframe(fruityvice_normalized)
+import streamlit as st
 
-fruits = []
+# Create an empty list to store fruits
+fruit_list = []
 
-# Create an input field.
-fruit_input = st.text_input("Enter a fruit to add to the list.")
+# Prompt the user to enter a fruit
+new_fruit = st.text_input("Enter a fruit")
 
-# Add an event handler for the input field's on_change event.
-if fruit_input:
-  fruits.append(fruit_input)
+# Add the fruit to the list when the user clicks a button or presses Enter
+if st.button("Add Fruit") or st.session_state.enter_pressed:
+    if new_fruit:
+        fruit_list.append(new_fruit)
+        st.success(f"Added {new_fruit} to the fruit list")
+        # Clear the input field
+        st.text_input("Enter a fruit", value="", key="fruit_input")
+    else:
+        st.warning("Please enter a fruit")
 
-# Display the list of fruits.
-st.write("Fruits:", fruits)
+# Listen for Enter key press event
+if st.session_state.fruit_input is not None:
+    st.session_state.enter_pressed = st.session_state.fruit_input.endswith("\n")
+else:
+    st.session_state.enter_pressed = False
+
+# Display the fruit list
+st.write("Fruit List:", fruit_list)
+
 
 import snowflake.connector
 
