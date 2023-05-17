@@ -41,8 +41,17 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
 
-streamlit.text("What fruit would you like to add")
-streamlit.write('Thanks for adding',add_my_fruit)
+fruits = []
+
+# Create an input field.
+fruit_input = st.text_input("Enter a fruit to add to the list.")
+
+# Add an event handler for the input field's on_change event.
+if fruit_input:
+  fruits.append(fruit_input)
+
+# Display the list of fruits.
+st.write("Fruits:", fruits)
 
 import snowflake.connector
 
