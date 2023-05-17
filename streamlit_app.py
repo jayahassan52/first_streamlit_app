@@ -42,7 +42,7 @@ import streamlit as st
 fruit_list = []
 
 # Prompt the user to enter a fruit
-new_fruit = st.text_input("Enter a fruit")
+new_fruit = st.text_input("What fruit would you like to add")
 
 # Add the fruit to the list when the user clicks a button or presses Enter
 if st.button("Add Fruit") or st.session_state.enter_pressed:
