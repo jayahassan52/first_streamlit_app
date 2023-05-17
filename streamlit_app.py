@@ -50,15 +50,9 @@ if st.button("Add Fruit") or st.session_state.enter_pressed:
         fruit_list.append(new_fruit)
         st.success(f"Added {new_fruit} to the fruit list")
         # Clear the input field
-        st.text_input("Enter a fruit", value="", key="fruit_input")
-    else:
-        st.warning("Please enter a fruit")
+        streamlit.write("Enter a fruit", value="", key="fruit_input")
 
-# Listen for Enter key press event
-if st.session_state.fruit_input is not None:
-    st.session_state.enter_pressed = st.session_state.fruit_input.endswith("\n")
-else:
-    st.session_state.enter_pressed = False
+
 
 # Display the fruit list
 st.write("Fruit List:", fruit_list)
