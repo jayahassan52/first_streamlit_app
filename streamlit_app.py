@@ -54,8 +54,6 @@ if st.button("Add Fruit") or st.session_state.enter_pressed:
 
 
 
-# Display the fruit list
-st.write("Fruit List:", fruit_list)
 
 
 import snowflake.connector
