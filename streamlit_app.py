@@ -28,19 +28,19 @@ streamlit.dataframe(my_fruit_list)
 #create the repeatable code block (called a function)
 def get_fruityvice_data(this_fruit_choice):
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
-    fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
 
-st.header('Fruityvice Fruit Advice!')
+streamlit.header('Fruityvice Fruit Advice!')
 try:
-    fruit_choice = st.text_input('What fruit would you like information about?')
+    fruit_choice = streamlit.text_input('What fruit would you like information about?')
     if not fruit_choice:
         st.error("Please select a fruit to get information.")
     else:
         back_from_function = get_fruityvice_data(fruit_choice)
-        st.dataframe(back_from_function)
+        streamlit.dataframe(back_from_function)
 except requests.exceptions.RequestException as e:
-    st.error("An error occurred while fetching the fruit information.")
+    streamlit.error("An error occurred while fetching the fruit information.")
   
 
 
