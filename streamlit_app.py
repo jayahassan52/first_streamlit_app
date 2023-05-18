@@ -34,28 +34,6 @@ import requests
 
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
-
-
-import streamlit as st
-
-# Create an empty list to store fruits
-fruit_list = []
-
-# Prompt the user to enter a fruit
-new_fruit = st.text_input("What fruit would you like to add")
-
-# Add the fruit to the list when the user clicks a button or presses Enter
-if st.button("Add Fruit") or st.session_state.enter_pressed:
-    if new_fruit:
-        fruit_list.append(new_fruit)
-        st.success(f"Added {new_fruit} to the fruit list")
-        # Clear the input field
-        streamlit.write("Enter a fruit", value="", key="fruit_input")
-
-
-
-
-
 import snowflake.connector
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
